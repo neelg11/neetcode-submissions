@@ -1,0 +1,21 @@
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        # Gagan's: check the part you know is sorted method
+        n=len(nums)
+        l,r=0,n-1
+        while(l<=r):
+            m=l+(r-l)//2
+            if(nums[m]==target): return True
+            if(nums[l]<nums[m]): #left Portion
+                if(nums[l]<=target<nums[m]):
+                    r=m-1
+                else:
+                    l=m+1
+            elif(nums[m]<nums[l]):
+                if(nums[m]<target<=nums[r]): #right Portion
+                    l=m+1
+                else:
+                    r=m-1
+            else:
+                l+=1
+        return False
